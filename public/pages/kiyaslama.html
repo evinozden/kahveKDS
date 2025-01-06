@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/comparison.css">
+  <title>Şube Kıyaslama</title>
+</head>
+<body>
+  <header>
+    <h1>Oze Kahve</h1>
+    <nav>
+      <ul>
+        <li><a href="../pages/anasayfa.html">Anasayfa</a></li>
+        <li><a href="../pages/kiyaslama.html">Kıyaslama</a></li>
+        <li><a href="../pages/hedef_noktalar.html">Hedef Noktalar</a></li>
+        
+        <li><a href="../pages/tahminleme.html">Tahminleme</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="charts-container">
+    <!-- Bar Grafiği -->
+    <div class="chart-wrapper">
+      <h4>Bar Grafiği: Şube Toplam Satışları</h4>
+      <form id="barFilterForm">
+        <label for="barYear">Yıl:</label>
+        <select id="barYear" name="year">
+          <option value="2024">2024</option>
+          <option value="2023">2023</option>
+          <option value="2022">2022</option>
+          <option value="2021">2021</option>
+          <option value="2020">2020</option>
+        </select>
+
+        <label for="barPeriod">Dönem:</label>
+        <select id="barPeriod" name="period">
+          <option value="1">Ocak - Haziran</option>
+          <option value="2">Temmuz - Aralık</option>
+        </select>
+
+        <button type="submit">Bar Grafiği Filtrele</button>
+      </form>
+      <div class="chart-container bar-chart-container">
+        <canvas id="comparisonChart"></canvas>
+      </div>
+    </div>
+
+    <!-- Çizgi Grafiği -->
+    <div class="chart-wrapper">
+      <h4>Çizgi Grafiği: Ürün Satışları Bölge Bazlı</h4>
+      <form id="lineFilterForm">
+        <label for="lineYear">Yıl:</label>
+        <select id="lineYear" name="year">
+          <option value="2024">2024</option>
+          <option value="2023">2023</option>
+          <option value="2022">2022</option>
+          <option value="2021">2021</option>
+          <option value="2020">2020</option>
+        </select>
+
+        <label for="linePeriod">Dönem:</label>
+        <select id="linePeriod" name="period">
+          <option value="1">Ocak - Haziran</option>
+          <option value="2">Temmuz - Aralık</option>
+        </select>
+
+        <label for="category">Kategori:</label>
+        <select id="category" name="category">
+          <option value="1">Filtre Kahve Çeşitleri</option>
+          <option value="2">Yöresel Kahveler</option>
+          <option value="3">Espresso Kahve</option>
+          <option value="4">Türk Kahvesi Çeşitleri</option>
+          <option value="5">Kafeinsiz Kahveler</option>
+          <option value="6">Diğer İçecekler</option>
+        </select>
+
+        <button type="submit">Çizgi Grafiği Filtrele</button>
+      </form>
+      <div class="chart-container line-chart-container">
+        <canvas id="regionChart"></canvas>
+      </div>
+    </div>
+
+    <!-- Yeni Grafik: İki Kategori Karşılaştırması -->
+    <div class="chart-wrapper">
+      <h4>Çizgi Grafiği: İki Kategorinin Şube Bazında Karşılaştırması</h4>
+      <form id="categoryComparisonForm">
+        <label for="comparisonYear">Yıl:</label>
+        <select id="comparisonYear" name="year">
+          <option value="2024">2024</option>
+          <option value="2023">2023</option>
+          <option value="2022">2022</option>
+          <option value="2021">2021</option>
+          <option value="2020">2020</option>
+        </select>
+
+        <label for="comparisonPeriod">Dönem:</label>
+        <select id="comparisonPeriod" name="period">
+          <option value="1">Ocak - Haziran</option>
+          <option value="2">Temmuz - Aralık</option>
+        </select>
+
+        <label for="category1">Kategori 1:</label>
+      <select id="category1" name="category1"></select>
+
+      <label for="category2">Kategori 2:</label>
+      <select id="category2" name="category2"></select>
+
+
+        <button type="submit">Kategorileri Karşılaştır</button>
+      </form>
+      <div class="chart-container category-comparison-container">
+        <canvas id="categoryComparisonChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- Load Chart.js library -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+  <!-- Load custom JavaScript -->
+  <script src="../js/comparison.js"></script>
+</body>
+</html>

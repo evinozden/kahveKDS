@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oze Kahve - Anasayfa</title>
+  <link rel="stylesheet" href="../css/anasayfa.css">
+</head>
+<body>
+  <header>
+    <h1>Oze Kahve</h1>
+    <nav>
+      <ul>
+        <li><a href="anasayfa.html">Anasayfa</a></li>
+        <li><a href="kiyaslama.html">Kıyaslama</a></li>
+        <li><a href="hedef_noktalar.html">Hedef Noktalar</a></li>
+        
+        <li><a href="tahminleme.html">Tahminleme</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="charts-container">
+    <!-- En Çok Satış Yapılan 5 İlçe Grafik Alanı -->
+    <div class="chart-wrapper">
+        <h4>En Çok Satış Yapılan 5 İlçe</h4>
+        <canvas id="topDistrictsChart"></canvas>
+    </div>
+    
+    <!-- En Çok Satış Yapılan 5 Ürün Grafik Alanı -->
+    <div class="chart-wrapper">
+        <h4>En Çok Satış Yapılan 5 Ürün</h4>
+        <canvas id="topProductsChart"></canvas>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>

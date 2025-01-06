@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fiyat ve Satış Tahmini</title>
+  <link rel="stylesheet" href="../css/tahminleme.css">
+</head>
+<body>
+  <header>
+    <h1>Oze Kahve - Fiyat Tahminleme</h1>
+    <nav>
+      <ul>
+        <li><a href="anasayfa.html">Anasayfa</a></li>
+        <li><a href="kiyaslama.html">Kıyaslama</a></li>
+        <li><a href="hedef_noktalar.html">Hedef Noktalar</a></li>
+        
+        <li><a href="tahminleme.html">Tahminleme</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div>
+    <h2>Ürün Fiyat ve Satış Tahminlemesi</h2>
+    
+    <label for="productSelect">Ürün Seçiniz:</label>
+    <select id="productSelect">
+      <!-- Ürünler burada yüklenecek -->
+    </select>
+    
+    <label for="priceInput">Yeni Fiyat:</label>
+    <input type="number" id="priceInput" placeholder="Yeni fiyatı girin">
+    
+    <button id="updateButton">Tahminle</button>
+
+    <div>
+      <p>Yeni Fiyat: <span id="newPrice"></span> TL</p>
+      <p>Mevcut Fiyat: <span id="currentPrice"></span> TL</p>
+      <p>Toplam Satış Adedi: <span id="predictedSales"></span> Adet</p>
+    </div>
+    
+    <canvas id="salesChart"></canvas>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="../js/tahminleme.js"></script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+/* Genel düzen */
+body { 
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f1ea; /* Soft cream background */
+    margin: 0;
+    padding: 0;
+    line-height: 0.8;
+  }
+  
+  /* Header styling */
+  header {
+    background: rgba(139, 69, 19, 0.95); /* Coffee brown color */
+    color: white;
+    padding: 0.5rem;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Soft shadow to elevate the header */
+  }
+  
+  header h1 {
+    font-size: 1.5rem;
+    font-family: 'Georgia', serif; /* More refined, elegant font for the title */
+  }
+  
+  nav ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  nav ul li {
+    display: inline;
+    margin: 0 20px;
+  }
+  
+  nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+  
+  nav ul li a:hover {
+    text-decoration: underline; 
+  }
+  
+  /* Grafik alanı düzeni */
+  .charts-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  
+  .chart-wrapper {
+    width: 48%; /* İki grafik yan yana */
+    background: #fff; /* Beyaz alan */
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .chart-container {
+    width: 100%;
+    height: 400px; /* Grafik alanı sabit yüksekliği */
+    position: relative;
+  }
+  
+  canvas {
+    width: 100% !important; /* Canvas genişliği konteyner ile uyumlu */
+    height: 100% !important; /* Canvas yüksekliği konteyner ile uyumlu */
+  }
+  
+  /* Genel form düzeni */
+form {
+    display: flex;
+    flex-wrap: wrap; /* Elemanları daha iyi hizalamak için wrap ekliyoruz */
+    gap: 10px; /* Elemanlar arasındaki boşluğu azaltıyoruz */
+    align-items: center; /* Elemanları dikeyde ortalıyoruz */
+  }
+  
+  form label {
+    font-weight: bold;
+    margin-right: 5px; /* Etiket ile kutu arasındaki mesafe */
+  }
+  
+  form select {
+    padding: 5px;
+    font-size: 14px;
+    width: auto; /* Dinamik genişlik */
+    min-width: 120px; /* Minimum genişlik belirtiyoruz */
+  }
+  
+  form button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  form button:hover {
+    background-color: #45a049;
+  }
+  

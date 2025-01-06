@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oze Kahve</title>
+  <link rel="stylesheet" href="/css/hedef_noktalar.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Oze Kahve</h1>
+    <nav>
+      <ul>
+        <li><a href="../pages/anasayfa.html">Anasayfa</a></li>
+        <li><a href="../pages/kiyaslama.html">Kıyaslama</a></li>
+        <li><a href="../pages/hedef_noktalar.html">Hedef Noktalar</a></li>
+        
+        <li><a href="../pages/tahminleme.html">Tahminleme</a></li>
+
+        
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <div class="charts-container">
+      <div class="chart">
+        <h1>Ürün Bazlı Satış Dağılımı</h1>
+        <canvas id="urunSatisChart" width="400" height="400"></canvas>
+        <div class="filters">
+          <div>
+            <label for="subeSecimi">Şube Seçimi:</label>
+            <select id="subeSecimi">
+              <option value="">Tüm Şubeler</option>
+              <option value="1">Cup O'Joe(Buca)</option>
+              <option value="2">777(Bornova)</option>
+              <option value="3">Luuq(Gaziemir)</option>
+              <option value="1">Kahve Deryası(Konak)</option>
+              <option value="2">optimist(Karşıyaka)</option>
+              <option value="3">Kahve Diyarı(Torbalı)</option>
+              <option value="1">Lina(Beypazarı)</option>
+              <option value="2">Botanica(Çankaya)</option>
+              <option value="3">Milkbar(Sincan)</option>
+              <option value="1">Finestra(Yenimahalle)</option>
+              <option value="2">Frezya(Polatlı)</option>
+              <option value="3">Merlin(Bismil)</option>
+              <option value="1">Glavni(Dicle)</option>
+              <option value="2">Kahve Dünyası(Sur) </option>
+              
+            </select>
+          </div>
+    
+          <div>
+            <label for="yilSecimi">Yıl Seçimi:</label>
+            <select id="yilSecimi">
+              <option value="">Tüm Yıllar</option>
+              <option value="2020">2020</option>
+              <option value="2021">2021</option>
+              <option value="2022">2022</option>
+              <option value="2023">2023</option>
+              <option value="2024">2024</option>
+            </select>
+          </div>
+          <button id="filtreUygula">Filtrele</button>
+        </div> 
+      </div>
+
+      <div class="chart">
+        <h1>Ürün Bazlı Kar Yüzdeleri</h1>
+        <canvas id="urunKarChart" width="400" height="300"></canvas>
+      </div>
+    </div>
+
+
+  </main>
+
+  <script>
+    let chart;
+
+    async function fetchAndRenderChart(kategori) {
+      const response = await fetch('/api/profit');
+      const data = await response.json();
+
+      // Filtreleme işlemi
+      const filteredData = kategori === "hepsi" 
+        ? data 
+        : data.filter(item => item.kategori_id.toString() === kategori);
+
+      const urunler = filteredData.map(item => item.urun);
+      const karYuzdeleri = filteredData.map(item => item.kar_yuzdesi);
+
+      // Chart.js ile grafiği oluştur
+      const ctx = document.getElementById('urunKarChart').getContext('2d');
+      
+      if (chart) chart.destroy(); 
+      chart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+          labels: urunler,
+          datasets: [{
+            label: 'Kar Yüzdesi',
+            data: karYuzdeleri,
+            backgroundColor: [
+              '#FF6F61', '#6B5B95', '#88B04B', '#F7CAC9', '#92A8D1',
+              '#34568B', '#FFB6C1', '#FF6347', '#FFD700', '#40E0D0',
+              '#D2691E', '#9ACD32', '#ADFF2F', '#FFD700', '#FF4500',
+              '#8A2BE2', '#00BFFF', '#20B2AA', '#9932CC', '#FF1493',
+             '#FF8C00'
+            ],
+
+            borderColor: '#333',
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { display: true },
+            title: { display: true, text: 'Ürün Bazlı Kar Yüzdeleri' }
+          }
+        }
+      });
+    }
+
+    fetchAndRenderChart("hepsi");
+
+    document.getElementById('filtreUygula').addEventListener('click', () => {
+      const kategori = document.getElementById('kategoriSec').value;
+      fetchAndRenderChart(kategori);
+    });
+
+    document.getElementById('loadChart').addEventListener('click', function() {
+      const subeId = document.getElementById('sube').value;
+      const year = document.getElementById('year').value;
+
+      fetch(`/profit?sube_id=${subeId}&year=${year}`)
+        .then(response => response.json())
+        .then(data => {
+          const months = data.map(item => item.month);
+          const profits = data.map(item => item.monthly_profit);
+
+          new Chart(document.getElementById('profitChart'), {
+            type: 'line',
+            data: {
+              labels: months,
+              datasets: [{
+                label: 'Aylık Kar',
+                data: profits,
+                borderColor: [
+                '#FF6F61', '#6B5B95', '#88B04B', '#F7CAC9', '#92A8D1',
+                '#34568B', '#FFB6C1', '#FF6347', '#FFD700', '#40E0D0',
+                '#D2691E', '#9ACD32', '#ADFF2F', '#FF4500', '#8A2BE2',
+                '#00BFFF', '#20B2AA', '#9932CC', '#FF1493', '#FF8C00',
+                '#FF6347', '#32CD32', '#8B008B'
+                 ],
+                fill: false
+              }]
+            },
+            options: {
+              responsive: true,
+              scales: {
+                x: { type: 'time', time: { unit: 'month' }, title: { display: true, text: 'Ay' } },
+                y: { title: { display: true, text: 'Kar (TRY)' } }
+              }
+            }
+          });
+        });
+    });
+  </script>
+
+  <script src="../js/anasayfa.js"></script>
+</body>
+</html>
